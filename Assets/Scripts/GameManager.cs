@@ -17,6 +17,13 @@ public class GameManager : MonoBehaviour
     public Image Especial_WeaponBar;
     //
     public int num_Enemys;
+    //Instanciar objetos
+    public GameObject prefab_armor;
+    public Transform pos_Recompensa;
+    //Crear Puerta para superar el nivel
+   
+    
+    
 
     // Start is called before the first frame update
     private void Awake()
@@ -44,6 +51,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CrearEnemigo();
         lifeBar.fillAmount = instancePL.vida / instancePL.vidaMax;
         ShieldBar.fillAmount = instancePL.armadura / instancePL.armaduraMax;
         Especial_WeaponBar.fillAmount = instancePL.Weapon_energy / instancePL.Weapon_energyMax;
@@ -52,9 +60,20 @@ public class GameManager : MonoBehaviour
         //Actualizar enemigos a texto
         ENEMY_text.text = "Enemies left: " + num_Enemys;
         //Pantalla de victoria
-        if (num_Enemys <= 0)
+        if (num_Enemys == 0)
         {
-            SceneManager.LoadScene(1);
+            //Aparece la puerta del siguiente cuarto
+            
+            //Dropea el objeto
+            Instantiate(prefab_armor, pos_Recompensa.position, Quaternion.identity);
+             
         }
+        
     }
+    public void CrearEnemigo()
+    {
+
+    }
+
+    
 }
